@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+{% load user_filters %}
+  <main role="main" class="container">
+    <div class="row">
+      <!-- Левый вспомогательный блок -->
+      <div class="col-md-3 mb-3 mt-1">
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="h4">
+                  Используемые технологии
+                </div> 
+              </li>
+              <li class="list-group-item">
+                <div class="h6 text-muted">
+                  <ul>
+                    <li>Python 3.9.5</li>
+                    <li>Django 2.2.19</li>
+                    <li>pytest-django 3.8.0</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>                                               
+          </div>                    
+        </div>                
+      </div>
+      <!-- Тело страницы -->
+      <div class="col-md-9">
+        <div class="card-body">                    
+          <div class="card-text">
+            <p>Какие навыки вам помогли, с чем вы хорошо разобрались, а с чем — не очень.</p>
+            <p>Картинки и нестандартные подходы приветствуются: эта страница может получиться очень интересной</p>
+            <p>Горят строки так что описание позже =) </p>
+          </div>                    
+        </div>                
+      </div>            
+    </div>        
+  </main>
+{% endblock %}
