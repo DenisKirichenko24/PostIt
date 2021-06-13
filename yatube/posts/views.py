@@ -40,7 +40,7 @@ def new_post(request):
 
 def profile(request, username):
     profile = get_object_or_404(User, username=username)
-    posts_profile = Post.objects.filter(author=profile).order_by('-pub_date').all() # noqa
+    posts_profile = Post.objects.filter(author=profile).order_by('-pub_date').all()  # noqa
     posts_count = posts_profile.count()
     follow_count = Follow.objects.filter(author=profile).count()
     following_count = Follow.objects.filter(user=profile).count()
@@ -109,7 +109,7 @@ def add_comment(request, username, post_id):
 @login_required
 def follow_index(request):
     author_list = Follow.objects.filter(user=request.user).values('author')
-    post_list = Post.objects.filter(author__in=author_list).order_by("-pub_date") # noqa
+    post_list = Post.objects.filter(author__in=author_list).order_by("-pub_date")  # noqa
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
