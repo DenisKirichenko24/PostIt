@@ -21,11 +21,11 @@
     <div class="media-body card-body">
       <h5 class="mt-0">
         <a
-          href="{% url 'profile' item.author.username %}"
+          href="{% url 'profile' comment.author.username %}"
           name="comment_{{ item.id }}"
-        >{{ item.author.username }}</a>
+        >{{ comment.author.username }}</a>
       </h5>
-      <p>{{ item.text|linebreaksbr }}</p>
+      <p>{{ comment.text|linebreaksbr }}</p>
     </div>
   </div>
 {% endfor %}

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Последние обновления на сайте{% endblock %}
-{% block header %}Последние обновления на сайте{% endblock %}
+{% load thumbnail %}
 {% block content %}
 
   <div class="container">
-    <!-- Вывод ленты записей -->
+
+    {% include "menu.html" with index=True %}
+
     {% for post in page %}
-      <!-- Вот он, новый include! -->
       {% include "post_item.html" with post=post %}
     {% endfor %}
+
+    {% include "paginator.html" with items=page paginator=paginator %}
+
   </div>
-
-  <!-- Вывод паджинатора -->
-  {% include "includes/paginator.html" with items=page paginator=paginator%}
-
 {% endblock %}

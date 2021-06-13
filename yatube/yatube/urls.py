@@ -8,11 +8,14 @@ handler404 = "posts.views.page_not_found"  # noqa
 handler500 = "posts.views.server_error"  # noqa
 
 urlpatterns = [
-    #  регистрация и авторизация
+    # администрирование
     path("admin/", admin.site.urls),
+    # авторизация
     path("auth/", include("users.urls")),
     path("auth/", include("django.contrib.auth.urls")),
+    # приложение post
     path("", include("posts.urls")),
+    # об авторе
     path("about/", include("about.urls", namespace="about"))
 ]
 

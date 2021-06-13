@@ -47,15 +47,15 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
-                             related_name='comments',
+                             related_name='comment',
                              verbose_name='Пост')
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name='comments',
+                               related_name='author_comment',
                                verbose_name='Автор')
     text = models.TextField(verbose_name='Текст комментария')
     created = models.DateTimeField(auto_now_add=True,
-                                   verbose_name='Дата комментария')
+                                   verbose_name='Дата и время комментария')
 
     def __str__(self):
         return self.text
@@ -64,3 +64,13 @@ class Comment(models.Model):
         ordering = ['-created']
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='follower')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='following')
+
+    def __str__(self):
+        return self.text

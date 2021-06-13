@@ -12,7 +12,7 @@ class PaginatorViewsTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(username='test_user')
         [Post.objects.create(text='а' * 100, author=self.user)
-         for number in range(13)]
+         for number in range(11)]
         self.client = Client()
         self.client.force_login(self.user)
 
