@@ -44,7 +44,8 @@ def profile(request, username):
     posts_count = post_prof.count()
     follow_count = profile.follower.count()
     following_count = profile.following.count()
-    #  нашел данный метод в гугле но не понял можно ли его использовать 
+    following = False
+    #  нашел данный метод в гугле но не понял можно ли его использовать
     #  так как писали что в новых версиях Джанго не поддерживается
     if request.user.is_authenticated:
         if Follow.objects.filter(user=request.user, author=profile).exists():
@@ -59,12 +60,13 @@ def profile(request, username):
         'page': page,
         'follow_count': follow_count,
         'following_count': following_count,
+        'following': following,
     })
 
 
 def post_view(request, username, post_id):
-    author = get_object_or_404(User, username=username)
     post = get_object_or_404(Post, author__username=username, pk=post_id)
+    author = post.author
     posts_count = author.posts.count()
     form = CommentForm()
     comments = Comment.objects.filter(post=post_id)
@@ -81,11 +83,11 @@ def post_view(request, username, post_id):
 
 @login_required
 def post_edit(request, username, post_id):
-    if request.user.username != username:
-        return redirect('post', username, post_id)
     post = get_object_or_404(Post, author__username=username, pk=post_id)
+    if request.user != post.author:
+        return redirect('post', username, post_id)
     form = PostForm(request.POST or None,
-                        files=request.FILES or None, instance=post)
+                    files=request.FILES or None, instance=post)
     if form.is_valid():
         post.save()
         return redirect('post', username, post_id)
@@ -112,9 +114,8 @@ def add_comment(request, username, post_id):
 
 @login_required
 def follow_index(request):
-    author_list = Follow.objects.filter(user=request.user).values('author')
-    p_list = Post.objects.filter(author__in=author_list).order_by('-pub_date')
-    paginator = Paginator(p_list, 10)
+    post_list = Post.objects.filter(author__following__user=request.user)
+    paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     follow_render = render(request, 'follow.html',
@@ -124,21 +125,19 @@ def follow_index(request):
 
 @login_required
 def profile_follow(request, username):
-    if request.user.username != username:
-        follower = get_object_or_404(User, username=request.user.username)
-        following = get_object_or_404(User, username=username)
-        have_follow = Follow.objects.filter(user=follower,
-                                            author=following).exists()
+    author = get_object_or_404(User, username=username)
+    if request.user != author:
+        have_follow = Follow.objects.filter(user=request.user,
+                                            author=author)
         if not have_follow:
-            Follow.objects.create(user=follower, author=following)
+            Follow.objects.create(user=request.user, author=author)
     return redirect('profile', username=username)
 
 
 @login_required
 def profile_unfollow(request, username):
-    follower = get_object_or_404(User, username=request.user.username)
-    following = get_object_or_404(User, username=username)
-    Follow.objects.filter(user=follower, author=following).delete()
+    author = get_object_or_404(User, username=username)
+    Follow.objects.filter(user=request.user, author=author).delete()
     return redirect('profile', username=username)
 
 
