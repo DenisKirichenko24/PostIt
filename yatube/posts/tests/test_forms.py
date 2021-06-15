@@ -61,7 +61,13 @@ class PostFormTests(TestCase):
         self.assertEqual(Post.objects.count(), posts_count + 1)
         self.assertEqual(new_post.text, form_data['text'])
         self.assertEqual(new_post.author, form_data['author'])
-        self.assertEqual(new_post.image, form_data['image'])
+        self.assertTrue(
+            Post.objects.filter(
+                text=self.post.text,
+                author=self.user,
+                group=self.group.id,
+                image='posts/small.gif'
+            ).exists())
 
     def test_post_form_doesnt_create_new_post_guest_user(self):
         form_data = {

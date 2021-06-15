@@ -11,10 +11,7 @@ def index(request):
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-    return render(request, 'index.html', {
-        'page': page,
-        'paginator': paginator
-    })
+    return render(request, "index.html", {"page": page})
 
 
 def group_posts(request, slug):
@@ -29,7 +26,8 @@ def group_posts(request, slug):
 
 @login_required
 def new_post(request):
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None,
+                    files=request.FILES or None)
     if form.is_valid():
         new_post = form.save(commit=False)
         new_post.author = request.user
