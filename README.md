@@ -1,19 +1,51 @@
-Сайт с системой публикации блогов пользователей с возможностью создания постов с загрузкой фотографией. Добавлена возможность комментировать, подписываться на авторов. Это будет сайт, на котором можно создать свою страницу. Если на нее зайти, то можно посмотреть все записи автора. Пользователи смогут заходить на чужие страницы, подписываться на авторов и комментировать их записи. Есть возможность модерировать записи. Также можно создавать сообщества и публиковать записи в сообществах
+# Yatube
+## _The Last Social Media You'll Ever Need (but it`s nice)
 
-Стек технологий
-Python 3 Django 3.7
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Технические требования
-Все необходимые пакеты перечислены в requirements.txt
-Запуск приложения
-Установите зависимости из requirements.txt:
+Small social media where you can create and post some notes with users and groups
+
+## Features
+
+- User`s creation
+- Make a posts with the pictures inside
+- Comment posts of another authors and follow them
+- Checking and reading all posts of authors
+- Posts editing and group creation
+
+## Tech
+- Phyton 3.7
+
+## Installation
+
+All important installations you can find in requirements.txt
+
+Install the dependencies and start the server.
+
+```sh
+install requirements.txt
 pip install -r requirements.txt
-После того как все зависимости установятся и завершат свою инициализацию, примените все необходимые миграции:
+```
+
+After installation of the dependences and initialization you have to make migrations (don`t forget to install environment)
+
+```sh
 python manage.py makemigrations
 python manage.py migrate
-Для доступа к панели администратора создайте администратора:
-python manage.py createsuperuser
-Запустите приложение:
-python manage.py runserver
+```
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+Create an administrator to have an access for administration panel
+
+```sh
+python manage.py createsuperuser
+```
+
+Start the application
+
+```sh
+python manage.py runserver
+```
+
+
+
+
