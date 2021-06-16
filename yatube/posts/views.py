@@ -43,8 +43,6 @@ def profile(request, username):
     follow_count = profile.follower.count()
     following_count = profile.following.count()
     following = False
-    #  нашел данный метод в гугле но не понял можно ли его использовать
-    #  так как писали что в новых версиях Джанго не поддерживается
     if request.user.is_authenticated:
         if Follow.objects.filter(user=request.user, author=profile).exists():
             following = True
@@ -126,7 +124,7 @@ def profile_follow(request, username):
     author = get_object_or_404(User, username=username)
     if request.user != author:
         have_follow = Follow.objects.filter(user=request.user,
-                                            author=author)
+                                            author=author).exists()
         if not have_follow:
             Follow.objects.create(user=request.user, author=author)
     return redirect('profile', username=username)

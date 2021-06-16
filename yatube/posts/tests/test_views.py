@@ -126,12 +126,14 @@ class FollowingTests(TestCase):
         self.follower = User.objects.create(username='test_follower')
         self.following = User.objects.create(username='test_following')
 
-    def test_follow_unfollow(self):
+    def test_follow(self):
         count = self.user.follower.count()
         Follow.objects.create(user=self.follower,
                               author=self.following)
         self.assertNotEqual(self.user.follower.count(), count + 1)
-        get_object_or_404(Follow,
-                          user=self.follower,
-                          author=self.following).delete()
-        self.assertEqual(self.user.follower.count(), count)
+
+    def test_unfollow(self):
+        count = self.user.follower.count()
+        Follow.objects.create(user=self.follower,
+                              author=self.following).delete()
+        self.assertNotEqual(self.user.follower.count(), count - 1)
