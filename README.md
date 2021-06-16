@@ -1,5 +1,5 @@
-# Yatube
-## _The Last Social Media You'll Ever Need (but it`s nice)
+# PostIt
+## Small blog-platform 
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
