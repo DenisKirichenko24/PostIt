@@ -7,10 +7,10 @@
         <div class="card">
           <div class="card-body">
             <div class="h2">
-               {{ author.get_full_name }}
+               {{ profile.get_full_name }}
             </div>
             <div class="h3 text-muted">
-               {{ author.username }}
+               {{ profile.username }}
              </div>
            </div>
            <ul class="list-group list-group-flush">
@@ -22,7 +22,7 @@
              </li>
              <li class="list-group-item">
                 <div class="h6 text-muted">
-                  Записей: {{ post_count }}
+                  Записей: {{ posts_count }}
                  </div>
               </li>
               <li class="list-group-item">
@@ -42,7 +42,16 @@
               </li>
             </ul>
           </div>
-       </div>
+        </div>
+      <div class="col-md-9">
+        {% for post in page %}
+          {% include "includes/post_item.html" with post=post %}
+        {% endfor %}
+      </div>
     </div>
+
+
+
+
   </main>
 {% endblock %}
