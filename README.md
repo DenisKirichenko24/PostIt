@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 Небольшая социальная сеть где вы можете постить записи и создавать группы
-Small social media where you can create and post some notes with users and groups
 
 ## Возможности
 
