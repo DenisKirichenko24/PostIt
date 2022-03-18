@@ -1,46 +1,47 @@
 # PostIt
-## Small blog-platform 
+## Блог-платформа
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
+Небольшая социальная сеть где вы можете постить записи и создавать группы
 Small social media where you can create and post some notes with users and groups
 
-## Features
+## Возможности
 
-- User`s creation
-- Make a posts with the pictures inside
-- Comment posts of another authors and follow them
-- Checking and reading all posts of authors
-- Posts editing and group creation
+- Создание пользоавтеля
+- Создание постов с картинками 
+- Комментирование постов других пользователей и подписывание на них
+- Просмотр постов других авторов
+- Редактирование постов и создание групп
 
-## Tech
+## Технологии
 - Phyton 3.7
 
-## Installation
+## Запуск проекта
 
-All important installations you can find in requirements.txt
+Все необходимые зависимости указаны в файле requirements.txt
 
-Install the dependencies and start the server.
+Установка зависимостей и запуск сервера
 
 ```sh
 install requirements.txt
 pip install -r requirements.txt
 ```
 
-After installation of the dependences and initialization you have to make migrations (don`t forget to install environment)
+После установки зависимостей и инициализации вы должны сделать миграции (не забудьте активировать виртуальное окружение)
 
 ```sh
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-Create an administrator to have an access for administration panel
+Создание администратора для доступа к панели администрирования 
 
 ```sh
 python manage.py createsuperuser
 ```
 
-Start the application
+Запуск сервера
 
 ```sh
 python manage.py runserver
